@@ -7,7 +7,66 @@ public class Bob {
     public BigInteger g;
     private BigInteger p;
 
+    //
+    //RSA的OT
+    private BigInteger k= BigInteger.valueOf(987654);
+    public BigInteger e;
+    public BigInteger n;
+    public BigInteger aliceRet[];
+    public BigInteger r;//待选择的随机消息r
+    public BigInteger[] mi;
 
+    public BigInteger sendV(){
+        this.n=aliceRet[0];
+        this.e=aliceRet[1];
+        if (i==0){
+            this.r=aliceRet[2];
+        }else {
+            this.r=aliceRet[3];
+        }
+        //BigInteger temp=k.pow(this.e);
+        /*
+        模运算的数学法则
+            (a + b) % p = (a % p + b % p) % p （1）
+            (a - b) % p = (a % p - b % p ) % p （2）
+            (a * b) % p = (a % p * b % p) % p （3）
+            a ^ b % p = ((a % p)^b) % p （4）
+         */
+        BigInteger temp1=k.modPow(e,n);
+        BigInteger temp2=r.mod(n);
+        BigInteger v=temp1.add(temp2).mod(n);
+        return v;
+
+    }
+
+    public void deCodeMsg(){
+        System.out.println(mi[0].subtract(k));
+        System.out.println(mi[1].subtract(k));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //
 
 
     public BigInteger gs;

@@ -10,16 +10,26 @@ RSA使用pq实现的教程
 public class Test {
     public static void main(String[] args) {
         Random rnd = new Random(new Date().getTime());
-        BigInteger p= BigInteger.probablePrime(8, rnd);
-        BigInteger q= BigInteger.probablePrime(8, rnd);
-        BigInteger n=q.multiply(q);
+        BigInteger p= BigInteger.probablePrime(512, rnd);
+        BigInteger q= BigInteger.probablePrime(512, rnd);
+        BigInteger n=q.multiply(p);
         BigInteger lcm=p.subtract(BigInteger.valueOf(1)).multiply(q.subtract(BigInteger.valueOf(1)));
-        BigInteger e=lcm.subtract(BigInteger.valueOf(1));//n与n+1互质，证明见百度
-        BigInteger d=e.modInverse(lcm);
+        //BigInteger e=lcm.subtract(BigInteger.valueOf(1));//n与n+1互质，证明见百度
+        int e=3;
+        //BigInteger d=BigInteger.valueOf(e).modInverse(lcm);
 
 //        BigInteger ret=e.multiply(d).mod(lcm);
 //        System.out.println(ret);
+//        System.out.println(d);
+//        System.out.println(Integer.valueOf(String.valueOf(d)));
 
+
+
+        String str = "测试转换程序是否好用";
+        String asciiResult = Util.stringToAscii(str);
+        System.out.println(asciiResult);
+        String stringResult = Util.asciiToString(asciiResult);
+        System.out.println(stringResult);
     }
 
 }
